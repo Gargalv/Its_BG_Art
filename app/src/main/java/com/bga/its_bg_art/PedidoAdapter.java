@@ -2,6 +2,7 @@ package com.bga.its_bg_art;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,10 +17,19 @@ import java.util.List;
 public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.PedidoViewHolder> {
     private List<Pedido> pedidos;
     private List<Pedido> pedidosFiltrados;
+    private OnPedidoClickListener listener;
+
+    public interface OnPedidoClickListener {
+        void onPedidoClick(Pedido pedido);
+    }
 
     public PedidoAdapter(List<Pedido> pedidos) {
         this.pedidos = pedidos;
         this.pedidosFiltrados = new ArrayList<>(pedidos);
+    }
+
+    public void setOnPedidoClickListener(OnPedidoClickListener listener) {
+        this.listener = listener;
     }
 
     public void filtrarPorEstado(String estado) {
@@ -53,11 +63,21 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.PedidoView
 
         int color = getColorByEstado(p.getEstado(), holder.itemView.getContext());
 
-        // Aplica el color al fondo del TextView del estado
-        holder.txtEstado.setBackgroundColor(color);
+        // Crear un GradientDrawable para mantener la forma redondeada
+        GradientDrawable drawable = new GradientDrawable();
+        drawable.setShape(GradientDrawable.RECTANGLE);
+        drawable.setColor(color);
+        drawable.setCornerRadius(12 * holder.itemView.getContext().getResources().getDisplayMetrics().density);
 
-        // Aplica el mismo color a la barra vertical
+        holder.txtEstado.setBackground(drawable);
         holder.barraLateral.setBackgroundColor(color);
+
+        // Manejar click en el item
+        holder.itemView.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onPedidoClick(p);
+            }
+        });
     }
 
     @Override

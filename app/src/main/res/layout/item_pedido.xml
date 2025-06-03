@@ -51,12 +51,15 @@
 
     <TextView
         android:id="@+id/txtEstado"
-        android:layout_width="wrap_content"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:background="@drawable/estado_background"
         android:padding="6dp"
         android:text="Estado"
         android:textColor="@android:color/black"
+        android:textSize="12sp"
+        android:gravity="center"
         app:layout_constraintTop_toBottomOf="@id/txtNombre"
         app:layout_constraintEnd_toEndOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
