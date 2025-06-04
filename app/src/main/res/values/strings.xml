@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Its_BG_Art</string>
+    <string-array name="metodos_pago">
+        <item>Efectivo</item>
+        <item>Bizum</item>
+        <item>Transferencia</item>
+        <item>Tarjeta</item>
+    </string-array>
 </resources>
