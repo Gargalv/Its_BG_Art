@@ -1,9 +1,11 @@
 package com.bga.its_bg_art;
 
+import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements PedidoAdapter.OnP
     private PedidoAdapter adapter;
     private LinearLayout filtroContainer;
     private TextView textFiltro;
+    private Button nuevoPedidoBttn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements PedidoAdapter.OnP
         recyclerPedidos = findViewById(R.id.recyclerPedidos);
         filtroContainer = findViewById(R.id.filtroContainer);
         textFiltro = findViewById(R.id.textFiltroSeleccionado);
+        nuevoPedidoBttn = findViewById(R.id.btnNuevoPedido);
 
         // Datos simulados
         List<Pedido> pedidos = new ArrayList<>();
@@ -73,6 +77,15 @@ public class MainActivity extends AppCompatActivity implements PedidoAdapter.OnP
                 });
 
                 popupMenu.show();
+            }
+        });
+
+        //Configurar Boton Nuevo Pedido
+        nuevoPedidoBttn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, AniadirPedido.class);
+                startActivity(intent);
             }
         });
     }

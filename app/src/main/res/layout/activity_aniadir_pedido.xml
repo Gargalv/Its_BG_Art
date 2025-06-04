@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp">
+
+    <LinearLayout
+        android:id="@+id/layoutPrincipal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Título y botón cerrar -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txtNuevoPedido"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nuevo Pedido"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/btnCerrar"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/ic_close"
+                android:contentDescription="Cerrar" />
+        </RelativeLayout>
+
+        <!-- Campos de texto -->
+        <TextView
+            android:id="@+id/txtNombreCliente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nombre del cliente"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"/>
+
+        <EditText
+            android:id="@+id/editNombreCliente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Andy"
+            android:background="@android:color/transparent"
+            android:inputType="textPersonName" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/txtEmailRRSS"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Email / RRSS"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"/>
+
+        <EditText
+            android:id="@+id/editEmailRRSS"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="abcd@example.com / @example"
+            android:background="@android:color/transparent"
+            android:inputType="textEmailAddress" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/txtDetallesPedido"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Detalles del pedido (Opcional)"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"/>
+
+        <EditText
+            android:id="@+id/editDetallesPedido"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:hint="Descripción" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp" />
+
+
+        <!-- Switch -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="4dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="Incluir frase extra (+2€)"
+                android:textStyle="bold"
+                android:layout_height="wrap_content"/>
+
+            <Switch
+                android:id="@+id/switchFraseExtra"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Contenedor de láminas -->
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Láminas"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"/>
+
+        <LinearLayout
+            android:id="@+id/containerLaminas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+
+        <!-- Botón añadir lámina -->
+        <Button
+            android:id="@+id/btnAnadirLamina"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+ Añadir Lámina"
+            android:backgroundTint="@android:color/darker_gray"
+            android:layout_marginTop="12dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_marginTop="12dp"
+            />
+
+        <!-- Spinner Método de pago -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Método de pago"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp" />
+
+        <Spinner
+            android:id="@+id/spinnerMetodoPago"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <!-- Botón Guardar -->
+        <Button
+            android:id="@+id/btnGuardar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Guardar"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="@android:color/darker_gray"
+            android:textColor="@android:color/white"/>
+    </LinearLayout>
+</ScrollView>
