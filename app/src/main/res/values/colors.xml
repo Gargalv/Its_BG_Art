@@ -3,4 +3,23 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="gray_text">#666666</color>
+    <color name="light_brown">#f6f7f2</color>
+    <color name="dark_brown">#7d593d</color>
+
+    <color name="primary">#7d593d</color>
+    <color name="primary_variant">#5A3821</color>
+    <color name="on_primary">#FFFFFF</color>
+    <color name="secondary">#D9CBB4</color>
+    <color name="secondary_variant">#F6F3EF</color>
+    <color name="on_secondary">#5A3821</color>
+    <color name="background">#F6F3EF</color>
+    <color name="on_background">#4B2E1D</color>
+    <color name="surface">#FDFBF9</color>
+    <color name="on_surface">#4B2E1D</color>
+    <color name="error">#D96C6C</color>
+
+
+    <color name="bottom_nav_background">#F6F3EF</color>
+
 </resources>
+
