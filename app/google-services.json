@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "157224459033",
+    "project_id": "bgart-73f5c",
+    "storage_bucket": "bgart-73f5c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:157224459033:android:f43eeadaa90e0bd3ddc388",
+        "android_client_info": {
+          "package_name": "com.bga.its_bg_art"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBU3w-nH8crI4A9UT4Kmzy5K10FYd3jNOY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

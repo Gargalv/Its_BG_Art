@@ -1,4 +1,4 @@
-package com.bga.its_bg_art;
+package com.bga.its_bg_art.Adapter;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -10,6 +10,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bga.its_bg_art.Pedido;
+import com.bga.its_bg_art.R;
 
 import java.util.ArrayList;
 import java.util.List;
