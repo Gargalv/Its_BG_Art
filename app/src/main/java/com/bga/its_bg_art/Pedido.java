@@ -13,8 +13,37 @@ public class Pedido {
         this.estado = estado;
     }
 
-    public String getNombre() { return nombre; }
-    public int getTotal() { return total; }
-    public String getPago() { return pago; }
-    public String getEstado() { return estado; }
+    // Getters
+    public String getNombre() {
+        return nombre;
+    }
+
+    public int getTotal() {
+        return total;
+    }
+
+    public String getPago() {
+        return pago;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    // Setters
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
+    }
+
+    public void setPago(String pago) {
+        this.pago = pago;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
 }

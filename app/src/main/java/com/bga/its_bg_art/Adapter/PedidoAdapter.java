@@ -2,10 +2,11 @@ package com.bga.its_bg_art.Adapter;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.drawable.GradientDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,6 +22,7 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.PedidoView
     private List<Pedido> pedidos;
     private List<Pedido> pedidosFiltrados;
     private OnPedidoClickListener listener;
+    private String[] estadosDisponibles = {"Pendiente", "Pagado", "Preparado", "Enviado", "Recibido", "Market"};
 
     public interface OnPedidoClickListener {
         void onPedidoClick(Pedido pedido);
@@ -62,20 +64,44 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.PedidoView
         holder.txtNombre.setText(p.getNombre());
         holder.txtTotal.setText("Total recibido: " + p.getTotal() + "€");
         holder.txtPago.setText("Pago: " + p.getPago());
-        holder.txtEstado.setText(p.getEstado());
 
+        // Configurar el spinner con el adaptador personalizado
+        EstadoSpinnerAdapter spinnerAdapter = new EstadoSpinnerAdapter(holder.itemView.getContext(), estadosDisponibles);
+        holder.spinnerEstado.setAdapter(spinnerAdapter);
+
+        // Seleccionar el estado actual en el spinner
+        for (int i = 0; i < estadosDisponibles.length; i++) {
+            if (estadosDisponibles[i].equals(p.getEstado())) {
+                holder.spinnerEstado.setSelection(i);
+                break;
+            }
+        }
+
+        // Configurar color de la barra lateral
         int color = getColorByEstado(p.getEstado(), holder.itemView.getContext());
-
-        // Crear un GradientDrawable para mantener la forma redondeada
-        GradientDrawable drawable = new GradientDrawable();
-        drawable.setShape(GradientDrawable.RECTANGLE);
-        drawable.setColor(color);
-        drawable.setCornerRadius(12 * holder.itemView.getContext().getResources().getDisplayMetrics().density);
-
-        holder.txtEstado.setBackground(drawable);
         holder.barraLateral.setBackgroundColor(color);
 
-        // Manejar click en el item
+        // Listener para cambios en el spinner
+        holder.spinnerEstado.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String nuevoEstado = estadosDisponibles[position];
+                p.setEstado(nuevoEstado);
+
+                // Actualizar color de la barra lateral cuando cambie el estado
+                int nuevoColor = getColorByEstado(nuevoEstado, holder.itemView.getContext());
+                holder.barraLateral.setBackgroundColor(nuevoColor);
+
+                // Aquí puedes agregar lógica para actualizar en base de datos si es necesario
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // No hacer nada
+            }
+        });
+
+        // Manejar click en el item (excluyendo el spinner)
         holder.itemView.setOnClickListener(v -> {
             if (listener != null) {
                 listener.onPedidoClick(p);
@@ -89,7 +115,8 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.PedidoView
     }
 
     static class PedidoViewHolder extends RecyclerView.ViewHolder {
-        TextView txtNombre, txtTotal, txtPago, txtEstado;
+        TextView txtNombre, txtTotal, txtPago;
+        Spinner spinnerEstado;  // CAMBIO: Era TextView txtEstado
         View barraLateral;
 
         public PedidoViewHolder(@NonNull View itemView) {
@@ -97,7 +124,7 @@ public class PedidoAdapter extends RecyclerView.Adapter<PedidoAdapter.PedidoView
             txtNombre = itemView.findViewById(R.id.txtNombre);
             txtTotal = itemView.findViewById(R.id.txtTotal);
             txtPago = itemView.findViewById(R.id.txtPago);
-            txtEstado = itemView.findViewById(R.id.txtEstado);
+            spinnerEstado = itemView.findViewById(R.id.spinnerEstado);  // CAMBIO: Era txtEstado
             barraLateral = itemView.findViewById(R.id.barraLateral);
         }
     }
