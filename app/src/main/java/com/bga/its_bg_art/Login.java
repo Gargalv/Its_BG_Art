@@ -22,11 +22,15 @@ public class Login extends AppCompatActivity {
     private Button reg, log;
     private TextInputLayout email, passwd;
     FirebaseAuth firebaseAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         firebaseAuth = FirebaseAuth.getInstance();
+
+        // Cerrar sesión automáticamente al iniciar la app
+        firebaseAuth.signOut();
 
         email = findViewById(R.id.username);
         passwd = findViewById(R.id.password);
@@ -49,11 +53,10 @@ public class Login extends AppCompatActivity {
                 setError();
                 if(uEmail.isEmpty() || uPass.isEmpty()) {
                     if (uEmail.isEmpty()){
-                        passwd.setError(" ");
+                        email.setError("Email requerido");
                     }
-                    //cambio provisional
                     if (uPass.isEmpty()){
-                        passwd.setError(" ");
+                        passwd.setError("Contraseña requerida");
                     }
                 } else {
                     loginUser(uEmail, uPass);
@@ -69,10 +72,7 @@ public class Login extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     goToMain();
                 } else {
-                    //showToast("Email / Password incorrectas");
-                    //email.setError("Revisar");
-                    //passwd.setError(getResources().getString(R.string.revisar));
-                    passwd.setError("Revisar");
+                    passwd.setError("Email o contraseña incorrectos");
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -83,14 +83,7 @@ public class Login extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        FirebaseUser user = firebaseAuth.getCurrentUser();
-        if (user != null) {
-            goToMain();
-        }
-    }
+    // Método onStart() eliminado - ya no verifica usuario autenticado automáticamente
 
     private void goToMain() {
         Intent toMain = new Intent(Login.this, MainActivity.class);
@@ -107,6 +100,4 @@ public class Login extends AppCompatActivity {
         email.setErrorEnabled(false);
         passwd.setErrorEnabled(false);
     }
-
-
 }
